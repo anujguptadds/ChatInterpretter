@@ -12,7 +12,9 @@ For example,
 consider the text: "You're the best man, I love talking to you!", the output for this example would be as follows:
 
 neg: 0.0
+
 neu: 0.408
+
 pos: 0.592
 
 These are the respective probabilities of the text being negative, neutral and positive.
@@ -21,8 +23,12 @@ These are the respective probabilities of the text being negative, neutral and p
 Consider another example: "I can't have any logical conversations with you, you're so dumb", the output here is:
 
 neg: 0.32 
+
 neu: 0.68 
+
 pos: 0.0
+
+
 
 (B) Task Extraction:
 
