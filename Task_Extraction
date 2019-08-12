@@ -1,3 +1,5 @@
+#The coding was done in jupyter notebook installed along the Anaconda Distributions, hence, many libraries are already present
+
 #importing necessary libraries
 import nltk
 from nltk import pos_tag, word_tokenize
