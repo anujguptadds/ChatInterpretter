@@ -1,0 +1,70 @@
+#importing necessary libraries
+import nltk
+from nltk import pos_tag, word_tokenize
+from nltk.corpus import stopwords
+from nltk.tag import RegexpTagger
+import re
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
+#Making a Custom Tagger based on NLTK
+tag1 = RegexpTagger([              
+(r'.*today$', 'CD'),
+(r'.*tonight$', 'CD'),
+(r'.*tomorrow$', 'CD'),
+(r'.*Monday$', 'CD'),
+(r'.*Tuesday$', 'CD'),
+(r'.*Wednesday$', 'CD'),
+(r'.*Thursday$', 'CD'),
+(r'.*Friday$', 'CD'),
+(r'.*Saturday$', 'CD'),
+(r'.*Sunday$', 'CD'),
+(r'.*morning$', 'CD'),
+(r'.*afternoon$', 'CD'),
+(r'.*evening$', 'CD'),
+(r'.*night$', 'CD'),
+(r'.*monday$', 'CD'),
+(r'.*tuesday$', 'CD'),
+(r'.*wednesday$', 'CD'),
+(r'.*thursday$', 'CD'),
+(r'.*friday$', 'CD'),
+(r'.*saturday$', 'CD'),
+(r'.*sunday$', 'CD'),
+(r'.*ll$','MD')
+])
+def tg(sent):
+    ne=list()
+    sent=nltk.word_tokenize(sent)
+    for i in sent:
+        if tag1.tag(nltk.word_tokenize(i))[0][1]==None:
+            ne.append(tuple([nltk.pos_tag(nltk.word_tokenize(i))[0][0],nltk.pos_tag(nltk.word_tokenize(i))[0][1]]))
+        else:
+            ne.append(tuple([tag1.tag(nltk.word_tokenize(i))[0][0],tag1.tag(nltk.word_tokenize(i))[0][1]]))
+    return ne
+   
+#Function to chunk out the part of a sentence satisfying the defined pattern
+def extract_NN(sent):
+    grammar = """
+    NP:{<.*>*<MD|PDT|VB|VBG|NN.*|PRP.*><.*>*<IN><.*>*<CD><.*>*}
+       {<IN><.*>*<CD><.*>*<MD|PDT|VB|VBG|NN.*|PRP.*><.*>*}
+    """
+    chunker = nltk.RegexpParser(grammar)
+    ne = set()
+    chunk = chunker.parse(tg(sent))
+    for tree in chunk.subtrees(filter=lambda t: t.label() == 'NP'):
+        ne.add(' '.join([child[0] for child in tree.leaves()]))
+    if len(ne)>0:
+        print(ne)
+    return ne
+ 
+#Getting Input
+text="""
+Hey driver, please be early tomorrow, I have my flight at 6 in the morning. 
+"""
+
+#Dividing the text into sentences
+sentences = re.split(r' *[\.\?!,][\'"\)\]]* *', text)
+
+#Printing all the tasks from all the sentences
+for stuff in sentences:
+    extract_NN(stuff)
