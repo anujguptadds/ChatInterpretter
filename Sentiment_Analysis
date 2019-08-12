@@ -1,3 +1,5 @@
+#The coding was done in jupyter notebook installed along the Anaconda Distributions, hence, many libraries are already present
+
 #Importing necessary libraries
 from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import subjectivity
