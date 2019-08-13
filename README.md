@@ -54,4 +54,4 @@ Again we could extract the relevant information
 
 Requirements:
 
-The codes have been written in Jupyter Notebook which was installed along through Anaconda Distributions, therefore, various libraries were already downloaded along with the Anaconda Distributions, therefore the same is suggested for the tester.
+The codes have been written in Jupyter Notebook which was installed along through Anaconda Distributions, hence, various libraries were downloaded along with the Anaconda Distributions, therefore the same is suggested to be downloaded by the tester/user.
