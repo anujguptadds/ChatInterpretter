@@ -51,3 +51,7 @@ Let's consider another example:
 'I have my flight at 6 in the morning'
 
 Again we could extract the relevant information
+
+Requirements:
+
+The codes have been written in Jupyter Notebook which was installed along through Anaconda Distributions, therefore, various libraries were already downloaded along with the Anaconda Distributions, therefore the same is suggested for the tester.
